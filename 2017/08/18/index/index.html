@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>index | suli</title>
+  <title>设计模式--发布订阅模式 | suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vue+webpack webpack配置介绍">
-<meta name="keywords" content="js">
+  <meta name="description" content="发布 — 订阅模式又叫观察者模式">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="index">
+<meta property="og:title" content="设计模式--发布订阅模式">
 <meta property="og:url" content="http://yoursite.com/2017/08/18/index/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="vue+webpack webpack配置介绍">
+<meta property="og:description" content="发布 — 订阅模式又叫观察者模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-18T06:52:31.407Z">
+<meta property="og:updated_time" content="2017-08-21T05:21:11.195Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="index">
-<meta name="twitter:description" content="vue+webpack webpack配置介绍">
+<meta name="twitter:title" content="设计模式--发布订阅模式">
+<meta name="twitter:description" content="发布 — 订阅模式又叫观察者模式">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -162,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      index
+      设计模式--发布订阅模式
     </h1>
   
 
@@ -175,8 +175,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>vue+webpack webpack配置介绍<br><a id="more"></a></p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2>
+        <p>发布 — 订阅模式又叫观察者模式<br><a id="more"></a><br>它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知<br>观察者订阅了被观察者的事件，当被观察者的状态改变时，被观察者会主动去沟通观察者，而无需关心观察者<br>得到事件后要去做什么，实际程序中可能是执行订阅者的回调函数</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>发布者发布消息（发布者主要包含两个类:发布者与发布者列表类）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">//发布者列表类</div><div class="line">//PublisherList主要是对发布者进行增删改查</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">PublisherList</span></span>() &#123;</div><div class="line">	this.publisherList = [];</div><div class="line">&#125;</div><div class="line"></div><div class="line">PublisherList.prototype.add = <span class="keyword">function</span>(obj) &#123;</div><div class="line">	this.publisherList.push(obj);</div><div class="line">&#125;</div><div class="line"></div><div class="line">PublisherList.prototype.count = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	<span class="built_in">return</span> this.publisherList.length;</div><div class="line">&#125;</div><div class="line"></div><div class="line">PublisherList.prototype.get = <span class="keyword">function</span>(index) &#123;</div><div class="line">	<span class="keyword">if</span> (index &gt; -1 &amp;&amp;  index &lt; this.publisherList.length) &#123;</div><div class="line">		<span class="built_in">return</span> this.publisherList[index]</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">PublisherList.prototype.indexOf = <span class="keyword">function</span>(obj,startIndex) &#123;</div><div class="line">	<span class="built_in">let</span> i = startIndex;</div><div class="line">	<span class="keyword">while</span>( i &lt; this.publisherList.length) &#123;</div><div class="line">		<span class="keyword">if</span> (this.publisherList[i] === obj) &#123;</div><div class="line">			<span class="built_in">return</span> i;</div><div class="line">		&#125;</div><div class="line">		i ++;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="built_in">return</span> -1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">PublisherList.prototype.removeAt = <span class="keyword">function</span>(index) &#123;</div><div class="line">	this.publisherList.splice(index,1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>发布者发布消息（发布者主要包含两个类:发布者与发布者列表类）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//发布者类</div><div class="line">//Publisher主要是用来发布消息</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Publisher</span></span>() &#123;</div><div class="line">	//this.publisher是PublisherList的一个实列</div><div class="line">	this.publishers = new PublisherList();</div><div class="line">&#125;</div><div class="line"></div><div class="line">Publisher.prototype.addPublisher = <span class="keyword">function</span>(publisher) &#123;</div><div class="line">	this.publishers.add(publisher);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Publisher.prototype.removePublisher= <span class="keyword">function</span>(publisher) &#123;</div><div class="line">	this.publishers.removeAt( this.publishers.indexOf(publisher,0) );</div><div class="line">&#125;</div><div class="line"></div><div class="line">//发布者发布新的东西</div><div class="line">Publisher.prototype.notify = <span class="keyword">function</span>(context) &#123;</div><div class="line">	<span class="built_in">let</span> publisherCount = this.publishers.count();</div><div class="line">	<span class="keyword">for</span>(var i = 0; i &lt; publisherCount; i ++) &#123;</div><div class="line">		this.publishers.get(i).update(context); //observerList[i].update(this.state);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//订阅者</div><div class="line">//订阅者主要是用来订阅消息，仅仅就只有一个函数</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Subscribe</span></span>() &#123;</div><div class="line">	this.update = <span class="keyword">function</span>(data)&#123;</div><div class="line">                  console.log(data);</div><div class="line">            &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用的时候<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//订阅者</div><div class="line">var oba = new Subscribe();</div><div class="line">var obb = new Subscribe();</div><div class="line"></div><div class="line">//发布者</div><div class="line">var pba = new Publisher();</div><div class="line"></div><div class="line">pba.addPublisher(oba);// oba订阅了消息pba</div><div class="line">oba.update = <span class="keyword">function</span>(data) &#123;</div><div class="line">	console.log(data)</div><div class="line">&#125;</div><div class="line"></div><div class="line">pba.addPublisher(obb)// obb订阅了消息pba</div><div class="line">obb.update = <span class="keyword">function</span>(data) &#123;</div><div class="line">	console.log(data)</div><div class="line">&#125;</div><div class="line"></div><div class="line">pba.notify(<span class="string">"我发布了消息"</span>) </div><div class="line">//或者</div><div class="line">obb.update = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	console.log(<span class="string">"订阅消息"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">pba.notify()</div></pre></td></tr></table></figure></p>
+
       
 
       
@@ -189,7 +195,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -345,11 +351,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
