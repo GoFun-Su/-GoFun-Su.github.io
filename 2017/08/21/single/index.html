@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>设计模式--单例模式 | suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设计模式–单例模式介绍">
+  <meta name="description" content="单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式--单例模式">
 <meta property="og:url" content="http://yoursite.com/2017/08/21/single/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="设计模式–单例模式介绍">
+<meta property="og:description" content="单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-21T10:04:22.403Z">
+<meta property="og:updated_time" content="2017-08-22T08:57:27.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式--单例模式">
-<meta name="twitter:description" content="设计模式–单例模式介绍">
+<meta name="twitter:description" content="单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -175,8 +175,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>设计模式–单例模式介绍<br><a id="more"></a></p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点<br><a id="more"></a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>实现单例模式的方法一般是先判断实例存在与否，如果存在直接返回，如果不存在就创建了再返回,在平时的代码中很常用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var obj;</div><div class="line"><span class="keyword">if</span> ( !obj )&#123;</div><div class="line">obj = xxx;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在js中其实最简单的单例模式就是把全局变量当成单例来写<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = &#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p>当用这种方式创建对象 a 时，对象 a 确实是独一无二的。如果 a 变量被声明在全局作用域下，则我们可以在代码中的任何位置使用这个变量，全局变量提供给全局访问是理所当然的,这样就满足了单例模式的两个条件,但是全局变量存在很多问题，它很容易造成命名空间污染,所以一般是会用两种方法避免污染</p>
+<ol>
+<li>使用命名空间</li>
+<li>使用闭包封装私有变量<br>这种方法把一些变量封装在闭包的内部，只暴露一些接口跟外界通信：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var user = (<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">     var __name = <span class="string">'sven'</span>,</div><div class="line">           __age = 29;</div><div class="line">     <span class="built_in">return</span> &#123;</div><div class="line">           getUserInfo: <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">                <span class="built_in">return</span> __name + <span class="string">'-'</span> + __age;</div><div class="line">           &#125;</div><div class="line">      &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="单例模式实现的基本算法"><a href="#单例模式实现的基本算法" class="headerlink" title="单例模式实现的基本算法"></a>单例模式实现的基本算法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var SingletonSimple = (<span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">    <span class="keyword">function</span> Singleton(options) &#123;</div><div class="line">        var options = options || &#123;&#125;;</div><div class="line">        this.name = <span class="string">'Singleton'</span>;</div><div class="line">        this.pointX = options.pointX || 0; </div><div class="line">        this.pointY = options.pointY || 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //实例容器</div><div class="line">    var instance;</div><div class="line">    var _static = &#123;</div><div class="line">        name: <span class="string">'SingletonSimple'</span>,</div><div class="line">        //获取实例的方法</div><div class="line">        //返回Singleton的实例</div><div class="line">        getInstance: <span class="keyword">function</span> (options) &#123;</div><div class="line">            <span class="keyword">if</span> (instance === undefined) &#123;</div><div class="line">                instance = new Singleton(options);</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">return</span> instance;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="built_in">return</span> _static;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">SingletonSimple.getInstance(&#123; pointX: 5 &#125;);</div></pre></td></tr></table></figure>
+<p>单例模式使用的场景：<br>比如设置页面弹窗的时候，我只需要刚开始创建一次弹窗，下次的时候如果存在，直接调用，不用创建多次,但是实现之后觉得是不对的，不同的操作可以操作不同的弹窗，不过现在就只学习了单例模式还有观察者模式，学习完设计模式之后再修改<br>[弹窗插件]</p>
 
       
 
