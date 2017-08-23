@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>分类 | suli</title>
+  <title>设计模式--构造函数模式 | suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我就是我，不一样的烟火">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="构造函数是被用来创建特殊类型的对象的，在对象初次被创建时，通过接收参数，构造函数可以用来设置对象属性值。">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式--构造函数模式">
+<meta property="og:url" content="http://yoursite.com/2017/08/23/constructor/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="我就是我，不一样的烟火">
+<meta property="og:description" content="构造函数是被用来创建特殊类型的对象的，在对象初次被创建时，通过接收参数，构造函数可以用来设置对象属性值。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-18T06:57:59.051Z">
+<meta property="og:updated_time" content="2017-08-23T06:26:27.025Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="我就是我，不一样的烟火">
+<meta name="twitter:title" content="设计模式--构造函数模式">
+<meta name="twitter:description" content="构造函数是被用来创建特殊类型的对象的，在对象初次被创建时，通过接收参数，构造函数可以用来设置对象属性值。">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -154,27 +155,30 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-constructor" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      分类
+      设计模式--构造函数模式
     </h1>
   
 
         
-        <a href="/categories/index.html" class="archive-article-date">
-  	<time datetime="2017-08-18T06:57:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
+        <a href="/2017/08/23/constructor/" class="archive-article-date">
+  	<time datetime="2017-08-23T06:19:09.602Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>构造函数是被用来创建特殊类型的对象的，在对象初次被创建时，通过接收参数，构造函数可以用来设置对象属性值。<br><a id="more"></a></p>
+<h3 id="构造函数在js中很常见，构造函数模式实现的基本算法"><a href="#构造函数在js中很常见，构造函数模式实现的基本算法" class="headerlink" title="构造函数在js中很常见，构造函数模式实现的基本算法"></a>构造函数在js中很常见，构造函数模式实现的基本算法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> Car( model, year, miles ) &#123;</div><div class="line">  this.model = model;</div><div class="line">  this.year = year;</div><div class="line">  this.miles = miles;</div><div class="line"></div><div class="line">  this.toString = <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">    <span class="built_in">return</span> this.model + <span class="string">" has done "</span> + this.miles + <span class="string">" miles"</span>;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var civic = new Car( <span class="string">"Honda Civic"</span>, 2009, 20000 );</div><div class="line">var mondeo = new Car( <span class="string">"Ford Mondeo"</span>, 2010, 5000 );</div></pre></td></tr></table></figure>
+<p>但是为了继承，在平时主要是通过构造函数加原型实现<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> Car(model, year, miles) &#123;</div><div class="line">    this.model = model;</div><div class="line">    this.year = year;</div><div class="line">    this.miles = miles;</div><div class="line">&#125;</div><div class="line">/*</div><div class="line">注意：这里我们使用了Object.prototype.方法名，而不是Object.prototype</div><div class="line">主要是用来避免重写定义原型prototype对象</div><div class="line">*/</div><div class="line">Car.prototype.output= <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">    <span class="built_in">return</span> this.model + <span class="string">"走了"</span> + this.miles + <span class="string">"公里"</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+
       
 
       
@@ -182,7 +186,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -193,6 +219,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2017/08/23/strategy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          设计模式--策略模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/21/single/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">设计模式--单例模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -241,7 +286,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

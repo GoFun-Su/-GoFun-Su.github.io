@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="suli">
 <meta property="og:description" content="单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-22T08:57:27.075Z">
+<meta property="og:updated_time" content="2017-08-22T09:08:13.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式--单例模式">
 <meta name="twitter:description" content="单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点">
@@ -185,7 +185,7 @@
 </li>
 </ol>
 <h3 id="单例模式实现的基本算法"><a href="#单例模式实现的基本算法" class="headerlink" title="单例模式实现的基本算法"></a>单例模式实现的基本算法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var SingletonSimple = (<span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">    <span class="keyword">function</span> Singleton(options) &#123;</div><div class="line">        var options = options || &#123;&#125;;</div><div class="line">        this.name = <span class="string">'Singleton'</span>;</div><div class="line">        this.pointX = options.pointX || 0; </div><div class="line">        this.pointY = options.pointY || 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //实例容器</div><div class="line">    var instance;</div><div class="line">    var _static = &#123;</div><div class="line">        name: <span class="string">'SingletonSimple'</span>,</div><div class="line">        //获取实例的方法</div><div class="line">        //返回Singleton的实例</div><div class="line">        getInstance: <span class="keyword">function</span> (options) &#123;</div><div class="line">            <span class="keyword">if</span> (instance === undefined) &#123;</div><div class="line">                instance = new Singleton(options);</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">return</span> instance;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="built_in">return</span> _static;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">SingletonSimple.getInstance(&#123; pointX: 5 &#125;);</div></pre></td></tr></table></figure>
-<p>单例模式使用的场景：<br>比如设置页面弹窗的时候，我只需要刚开始创建一次弹窗，下次的时候如果存在，直接调用，不用创建多次,但是实现之后觉得是不对的，不同的操作可以操作不同的弹窗，不过现在就只学习了单例模式还有观察者模式，学习完设计模式之后再修改<br>[弹窗插件]</p>
+<p>单例模式使用的场景：<br>比如设置页面弹窗的时候，我只需要刚开始创建一次弹窗，下次的时候如果存在，直接调用，不用创建多次,但是实现之后觉得是不对的，不同的操作可以操作不同的弹窗，不过现在就只学习了单例模式还有观察者模式，学习完设计模式之后再修改<br><a href="https://github.com/GoFun-Su/s-toaster/tree/master" target="_blank" rel="external">弹窗插件</a></p>
 
       
 
@@ -228,6 +228,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/08/23/constructor/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          设计模式--构造函数模式
+        
+      </div>
+    </a>
   
   
     <a href="/2017/08/18/index/" id="article-nav-older" class="article-nav-link-wrap">
@@ -355,11 +364,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>

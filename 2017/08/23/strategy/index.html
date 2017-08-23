@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>分类 | suli</title>
+  <title>设计模式--策略模式 | suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我就是我，不一样的烟火">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="策略模式：定义一系列的算法,把每一个算法封装起来">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式--策略模式">
+<meta property="og:url" content="http://yoursite.com/2017/08/23/strategy/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="我就是我，不一样的烟火">
+<meta property="og:description" content="策略模式：定义一系列的算法,把每一个算法封装起来">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-18T06:57:59.051Z">
+<meta property="og:updated_time" content="2017-08-23T10:00:46.286Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="我就是我，不一样的烟火">
+<meta name="twitter:title" content="设计模式--策略模式">
+<meta name="twitter:description" content="策略模式：定义一系列的算法,把每一个算法封装起来">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -154,27 +155,32 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-strategy" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      分类
+      设计模式--策略模式
     </h1>
   
 
         
-        <a href="/categories/index.html" class="archive-article-date">
-  	<time datetime="2017-08-18T06:57:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
+        <a href="/2017/08/23/strategy/" class="archive-article-date">
+  	<time datetime="2017-08-23T09:53:20.241Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>策略模式：定义一系列的算法,把每一个算法封装起来<br><a id="more"></a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>策略模式把对象本身和运算规则区分开来<br>模式的组成<br><!-- ["模式组成"]("http://my.csdn.net/uploads/201205/11/1336732187_4598.jpg")   --><br>环境类(Context):Context 负责接收用户的请求并委托给 strategy 对象<br>抽象策略类(Strategy):定义所有支持的算法的公共接口。<br>具体策略类(ConcreteStrategy):某一个接口算法的具体实现<br>使用场景：许多相关的类仅仅是行为有异。 “策略”提供了一种用多个行为中的一个行为来配置一个类的方法。<br>即一个系统需要动态地在几种算法中选择一种</p>
+<h3 id="基本算法"><a href="#基本算法" class="headerlink" title="基本算法"></a>基本算法</h3><p>抽象策略类<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var strategies = &#123;</div><div class="line">  isNonEmpty: <span class="keyword">function</span>( value, errorMsg )&#123; </div><div class="line">  //具体策略类</div><div class="line">    <span class="keyword">if</span> ( value === <span class="string">''</span> )&#123;</div><div class="line">      <span class="built_in">return</span> errorMsg;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  minLength: <span class="keyword">function</span>( value, length, errorMsg )&#123;</div><div class="line">    <span class="keyword">if</span> ( value.length &lt; length )&#123;</div><div class="line">      <span class="built_in">return</span> errorMsg;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  isMobile: <span class="keyword">function</span>( value, errorMsg )&#123;</div><div class="line">    <span class="keyword">if</span> ( !/(^1[3|5|8][0-9]&#123;9&#125;$)/.<span class="built_in">test</span>( value ) )&#123;</div><div class="line">      <span class="built_in">return</span> errorMsg;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>环境类<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">var Validator = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">  this.cache = [];</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Validator.prototype.add = <span class="keyword">function</span>( dom, rules )&#123;</div><div class="line">  var self = this;</div><div class="line">  //rules多个，为一个数组</div><div class="line">  <span class="keyword">for</span> ( var i = 0, rule; rule = rules[ i++ ]; )&#123;</div><div class="line">    (<span class="keyword">function</span>( rule )&#123;</div><div class="line">      //split转换成数组</div><div class="line">      var strategyAry = rule.strategy.split( <span class="string">':'</span> );</div><div class="line">      var errorMsg = rule.errorMsg;</div><div class="line">      self.cache.push(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">        //数组的第一个元素从其中删除,并返回第一个元素的值,获取键strategy</div><div class="line">        var strategy = strategyAry.shift();</div><div class="line">        //数组的开头添加一个dom的值，strategyAry [value,键strategy的值]</div><div class="line">        strategyAry.unshift( dom.value );</div><div class="line">        //strategyAry [value,键strategy的值,错误信息]</div><div class="line">        strategyAry.push( errorMsg );</div><div class="line">        <span class="built_in">return</span> strategies[ strategy ].apply( dom, strategyAry );</div><div class="line">      &#125;);</div><div class="line">    &#125;)( rule )</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Validator.prototype.start = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">  <span class="keyword">for</span> ( var i = 0, Func; Func = this.cache[ i++ ]; )&#123;</div><div class="line">    var errorMsg = Func();</div><div class="line">    <span class="keyword">if</span> ( errorMsg )&#123;</div><div class="line">      <span class="built_in">return</span> errorMsg;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>用户需求<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">var validataFunc = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">  var validator = new Validator();</div><div class="line"></div><div class="line">  validator.add( registerForm.userName, [&#123;</div><div class="line">    strategy: <span class="string">'isNonEmpty'</span>,</div><div class="line">    errorMsg: <span class="string">'用户名不能为空'</span></div><div class="line">  &#125;, &#123;</div><div class="line">    strategy: <span class="string">'minLength:6'</span>,</div><div class="line">    errorMsg: <span class="string">'用户名长度不能小于 10 位'</span></div><div class="line">  &#125;]);</div><div class="line"></div><div class="line">  validator.add( registerForm.password, [&#123;</div><div class="line">    strategy: <span class="string">'minLength:6'</span>,</div><div class="line">    errorMsg: <span class="string">'密码长度不能小于 6 位'</span></div><div class="line">  &#125;]);</div><div class="line"></div><div class="line">  validator.add( registerForm.phoneNumber, [&#123;</div><div class="line">    strategy: <span class="string">'isMobile'</span>,</div><div class="line">    errorMsg: <span class="string">'手机号码格式不正确'</span></div><div class="line">  &#125;]);</div><div class="line"></div><div class="line">  var errorMsg = validator.start();</div><div class="line">  <span class="built_in">return</span> errorMsg;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var registerForm = document.getElementById( <span class="string">'registerForm'</span> );</div><div class="line">registerForm.onsubmit = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">  var errorMsg = validataFunc();</div><div class="line">  <span class="keyword">if</span> ( errorMsg )&#123;</div><div class="line">    alert ( errorMsg );</div><div class="line">    <span class="built_in">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+
       
 
       
@@ -182,7 +188,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -193,6 +221,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/23/constructor/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">设计模式--构造函数模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -241,7 +279,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
