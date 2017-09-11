@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>设计模式--代理模式 | suli</title>
+  <title>jQuery.extend()和jQuery.fn.extend() | suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="代理模式:当客户不方便直接访问一个对象或者不满足需要的时候，提供一个替身对象来控制对这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理之后，再把请求转交给本体对象">
-<meta name="keywords" content="设计模式">
+  <meta name="description" content="jQuery.extend()和jQuery.fn.extend()">
+<meta name="keywords" content="jquery插件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式--代理模式">
-<meta property="og:url" content="http://yoursite.com/2017/08/24/agency/index.html">
+<meta property="og:title" content="jQuery.extend()和jQuery.fn.extend()">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/extend/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="代理模式:当客户不方便直接访问一个对象或者不满足需要的时候，提供一个替身对象来控制对这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理之后，再把请求转交给本体对象">
+<meta property="og:description" content="jQuery.extend()和jQuery.fn.extend()">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-25T01:57:01.283Z">
+<meta property="og:updated_time" content="2017-09-11T08:38:21.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式--代理模式">
-<meta name="twitter:description" content="代理模式:当客户不方便直接访问一个对象或者不满足需要的时候，提供一个替身对象来控制对这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理之后，再把请求转交给本体对象">
+<meta name="twitter:title" content="jQuery.extend()和jQuery.fn.extend()">
+<meta name="twitter:description" content="jQuery.extend()和jQuery.fn.extend()">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -155,30 +155,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-agency" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-extend" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式--代理模式
+      jQuery.extend()和jQuery.fn.extend()
     </h1>
   
 
         
-        <a href="/2017/08/24/agency/" class="archive-article-date">
-  	<time datetime="2017-08-24T07:04:35.807Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
+        <a href="/2017/09/11/extend/" class="archive-article-date">
+  	<time datetime="2017-09-11T08:32:45.562Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>代理模式:当客户不方便直接访问一个对象或者不满足需要的时候，提供一个替身对象来控制对这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理之后，再把请求转交给本体对象<br><a id="more"></a></p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="代理模式的分类"><a href="#代理模式的分类" class="headerlink" title="代理模式的分类"></a>代理模式的分类</h3><p>保护代理：用于对象应该有不同访问权限的情况；<br>虚拟代理:  把一些开销很大的对象，延迟到真正需要它的时候才去创建；<br>缓存代理:  为一些开销大的运算结果提供暂时的存储，在下次运算时，如果传递进来的参数跟之前一致，则可以直接返回前面存储的运算结果；<br>等等</p>
-<h3 id="基本算法"><a href="#基本算法" class="headerlink" title="基本算法"></a>基本算法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var Flower = <span class="function"><span class="title">function</span></span>() &#123;&#125;</div><div class="line"></div><div class="line">//小明要送花</div><div class="line">var Xiaoming = &#123;</div><div class="line">  sendFlower: <span class="keyword">function</span>(target) &#123;</div><div class="line">    var flower = new Flower();</div><div class="line">    target.sendFlower(flower)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//委托b去送花，监听a在合适的时候去送</div><div class="line">var b = &#123;</div><div class="line">  sendFlower: <span class="keyword">function</span>(flower) &#123;</div><div class="line">    a.listenFlower(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">      a.reciveFlower(flower);</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//a收到花</div><div class="line">var a = &#123;</div><div class="line">  reciveFlower: <span class="keyword">function</span>(flower) &#123;</div><div class="line">    console.log(flower)</div><div class="line">  &#125;,</div><div class="line">  listenFlower: <span class="keyword">function</span>(fn) &#123;</div><div class="line">    fn()</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景:"></a>使用场景:</h3><p>虚拟代理:图片预加载<br>缓存代理: 计算乘积以及分页</p>
+        <p> jQuery.extend()和jQuery.fn.extend()<br><a id="more"></a></p>
+<h2 id="jquery插件一般用到jQuery-extend-和jQuery-fn-extend-两个方法"><a href="#jquery插件一般用到jQuery-extend-和jQuery-fn-extend-两个方法" class="headerlink" title="jquery插件一般用到jQuery.extend()和jQuery.fn.extend()两个方法"></a>jquery插件一般用到jQuery.extend()和jQuery.fn.extend()两个方法</h2><p>首先介绍jQuery.extend()方法<br>一、合并多个对象<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">extend(dest,src1,src2,src3...);</div></pre></td></tr></table></figure></p>
+<p>将src1,src2,src3…合并到dest中,返回值为合并后的dest,由此可以看出该方法合并后，是修改了dest的结构的。如果想要得到合并的结果却又不想修改dest的结构<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var newSrc=$.extend(&#123;&#125;,src1,src2,src3...)//也就是将<span class="string">"&#123;&#125;"</span>作为dest参数。</div></pre></td></tr></table></figure></p>
+<p>二、深度嵌套对象<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">extend(boolean,dest,src1,src2,src3...)</div></pre></td></tr></table></figure></p>
+<p>第一个参数boolean代表是否进行深度拷贝，true代表深拷贝，使用如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> jQuery.extend( </div><div class="line">&#123; name: “John”, location: &#123; city: “Boston” &#125; &#125;, </div><div class="line">&#123; last: “Resig”, location: &#123; state: “MA” &#125; &#125; </div><div class="line">); </div><div class="line">// 结果: </div><div class="line">// =&gt; &#123; name: “John”, last: “Resig”, location: &#123; state: “MA” &#125; &#125; </div><div class="line">// 新的更深入的 .extend() </div><div class="line">jQuery.extend( <span class="literal">true</span>, </div><div class="line">&#123; name: “John”, location: &#123; city: “Boston” &#125; &#125;, </div><div class="line">&#123; last: “Resig”, location: &#123; state: “MA” &#125; &#125; </div><div class="line">); </div><div class="line">// 结果 </div><div class="line">// =&gt; &#123; name: “John”, last: “Resig”, </div><div class="line">// location: &#123; city: “Boston”, state: “MA” &#125; &#125;</div></pre></td></tr></table></figure></p>
+<p>三、静态方法<br>$.extend(src) 该方法就是将src合并到jquery的全局对象中去，如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$.extend(&#123; hello:<span class="function"><span class="title">function</span></span>()&#123;alert(<span class="string">'hello'</span>);&#125; &#125;);</div><div class="line">$.hello();//调用</div><div class="line">``` 　</div><div class="line">接下来介绍jQuery.fn.extend()</div><div class="line">```bash</div><div class="line">jQuery.fn = jQuery.prototype = &#123;</div><div class="line">　　　init: <span class="keyword">function</span>( selector, context ) &#123;.....&#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>原来 jQuery.fn = jQuery.prototype(类似原生js的原型方法，是所有实列共享的)，比如$(“#btn1″) 会生成一个 jQuery类的实例<br>jQuery.fn.extend = jQuery.prototype.extend<br>你可以拓展一个对象到jQuery的 prototype里去，这样的话就是插件机制了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">function</span>( $ )&#123;</div><div class="line">$.fn.tooltip = <span class="keyword">function</span>( options ) &#123;</div><div class="line">	</div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line">//等价于</div><div class="line">var tooltip = &#123;</div><div class="line"><span class="keyword">function</span>(options)&#123;</div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line">$.fn.extend(tooltip) = $.prototype.extend(tooltip) = $.fn.tooltip</div><div class="line">&#125;)( jQuery );</div><div class="line">调用的时候$(<span class="string">"#input1"</span>).tooltip();</div></pre></td></tr></table></figure></p>
 
       
 
@@ -192,7 +195,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jquery插件</a>
         		</li>
       		
 		</ul>
@@ -222,18 +225,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/28/module/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          设计模式--模块化模式和暴露式模块模式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/23/strategy/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">设计模式--策略模式</div>
+    <a href="/2017/09/05/pagePlugin/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jquery插件</div>
       <i class="icon-circle-right"></i>
     </a>
   

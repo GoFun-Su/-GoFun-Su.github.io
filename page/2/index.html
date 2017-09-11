@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>设计模式--代理模式 | suli</title>
+  <title>suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="代理模式:当客户不方便直接访问一个对象或者不满足需要的时候，提供一个替身对象来控制对这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理之后，再把请求转交给本体对象">
-<meta name="keywords" content="设计模式">
-<meta property="og:type" content="article">
-<meta property="og:title" content="设计模式--代理模式">
-<meta property="og:url" content="http://yoursite.com/2017/08/24/agency/index.html">
+  <meta name="description" content="我就是我，不一样的烟火">
+<meta property="og:type" content="website">
+<meta property="og:title" content="suli">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="代理模式:当客户不方便直接访问一个对象或者不满足需要的时候，提供一个替身对象来控制对这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理之后，再把请求转交给本体对象">
+<meta property="og:description" content="我就是我，不一样的烟火">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-25T01:57:01.283Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式--代理模式">
-<meta name="twitter:description" content="代理模式:当客户不方便直接访问一个对象或者不满足需要的时候，提供一个替身对象来控制对这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理之后，再把请求转交给本体对象">
+<meta name="twitter:title" content="suli">
+<meta name="twitter:description" content="我就是我，不一样的烟火">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -155,31 +153,32 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-agency" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      设计模式--代理模式
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/18/hello-world/">vue+webpack webpack配置</a>
     </h1>
   
 
         
-        <a href="/2017/08/24/agency/" class="archive-article-date">
-  	<time datetime="2017-08-24T07:04:35.807Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
+        <a href="/2017/08/18/hello-world/" class="archive-article-date">
+  	<time datetime="2017-08-18T01:52:31.528Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>代理模式:当客户不方便直接访问一个对象或者不满足需要的时候，提供一个替身对象来控制对这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理之后，再把请求转交给本体对象<br><a id="more"></a></p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="代理模式的分类"><a href="#代理模式的分类" class="headerlink" title="代理模式的分类"></a>代理模式的分类</h3><p>保护代理：用于对象应该有不同访问权限的情况；<br>虚拟代理:  把一些开销很大的对象，延迟到真正需要它的时候才去创建；<br>缓存代理:  为一些开销大的运算结果提供暂时的存储，在下次运算时，如果传递进来的参数跟之前一致，则可以直接返回前面存储的运算结果；<br>等等</p>
-<h3 id="基本算法"><a href="#基本算法" class="headerlink" title="基本算法"></a>基本算法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var Flower = <span class="function"><span class="title">function</span></span>() &#123;&#125;</div><div class="line"></div><div class="line">//小明要送花</div><div class="line">var Xiaoming = &#123;</div><div class="line">  sendFlower: <span class="keyword">function</span>(target) &#123;</div><div class="line">    var flower = new Flower();</div><div class="line">    target.sendFlower(flower)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//委托b去送花，监听a在合适的时候去送</div><div class="line">var b = &#123;</div><div class="line">  sendFlower: <span class="keyword">function</span>(flower) &#123;</div><div class="line">    a.listenFlower(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">      a.reciveFlower(flower);</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//a收到花</div><div class="line">var a = &#123;</div><div class="line">  reciveFlower: <span class="keyword">function</span>(flower) &#123;</div><div class="line">    console.log(flower)</div><div class="line">  &#125;,</div><div class="line">  listenFlower: <span class="keyword">function</span>(fn) &#123;</div><div class="line">    fn()</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景:"></a>使用场景:</h3><p>虚拟代理:图片预加载<br>缓存代理: 计算乘积以及分页</p>
-
+        <p>vue+webpack webpack配置介绍<br></p>
+        
+          <a class="article-more-a" href="/2017/08/18/hello-world/#more">more >></a>
+        
       
 
       
@@ -192,7 +191,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -212,33 +211,16 @@
 
 
       
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/18/hello-world/">展开全文 >></a>
+        </p>
+      
 
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/08/28/module/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          设计模式--模块化模式和暴露式模块模式
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/08/23/strategy/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">设计模式--策略模式</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -258,12 +240,12 @@
 
 
 
-  
-  
-  
 
   
-
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -286,8 +268,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
