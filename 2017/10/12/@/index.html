@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://suli.linsu.site/2017/10/12/@/resource_2.png">
 <meta property="og:image" content="http://suli.linsu.site/2017/10/12/@/resource_3.png">
 <meta property="og:image" content="http://suli.linsu.site/2017/10/12/@/resource_4.png">
-<meta property="og:updated_time" content="2017-10-12T07:25:16.283Z">
+<meta property="og:updated_time" content="2017-10-12T07:29:51.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类似qq艾特好友功能">
 <meta name="twitter:description" content="最近做项目，碰到过类似qq艾特好友的功能 ，拿出来共享">
@@ -181,8 +181,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近做项目，碰到过类似qq艾特好友的功能 ，拿出来共享<br><a id="more"></a></p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>@好友功能的基本思路就是创建一个可编辑域，可以点击@符号进行添加操作，以及进行文字描述操作，这里文字描述以及他添加好友用的不是textarea文本输入框，因为对于文本输入框,添加@操作好友的时候很难进行判断，所以这里用的是contenteditable属性,这个属性主要是是盒子变成可以编辑的状态，可以随意添加任意的标签。具体可以参考[<a href="http://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/</a>]<br>具体实现如图一：<br>初始状态   <img src="/2017/10/12/@/resource_1.png" alt="resource_1"> </p>
-<p>@状态       <img src="/2017/10/12/@/resource_2.png" alt="resource_2"><br>这里如图一输入框里面有文字，点击盒子之后文字消失，变成可输入状态，这里主要是按照qq的实现方式，多加了一个盒子，在最开始的时候可编辑的盒子隐藏，点击文字的盒子可编辑的盒子显示，进行切换操作的，<br>如图所示：<img src="/2017/10/12/@/resource_3.png" alt="resource_3"><br>                    <img src="/2017/10/12/@/resource_4.png" alt="resource_4"><br>还有一个问题就是在点击带有文字的盒子的时候可编辑的盒子显示，但是却没有获取焦点，看了网上很多资料，都有重新设置焦点的方法，但是只使用$(“#inputor”).focus();就解决了，后续有问题再继续深入。。。。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>@好友功能的基本思路就是创建一个可编辑域，可以点击@符号进行添加操作，以及进行文字描述操作，这里文字描述以及他添加好友用的不是textarea文本输入框，因为对于文本输入框,添加@操作好友的时候很难进行判断，所以这里用的是contenteditable属性,这个属性主要是是盒子变成可以编辑的状态，可以随意添加任意的标签。具体可以参考[<a href="http://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/</a>]</p>
+<p>具体实现如图一：<br>初始状态   <img src="/2017/10/12/@/resource_1.png" alt="resource_1"> </p>
+<p>@状态       <img src="/2017/10/12/@/resource_2.png" alt="resource_2"> </p>
+<p>这里如图一输入框里面有文字，点击盒子之后文字消失，变成可输入状态，这里主要是按照qq的实现方式，多加了一个盒子，在最开始的时候可编辑的盒子隐藏，点击文字的盒子可编辑的盒子显示，进行切换操作的，</p>
+<p>如图所示：<img src="/2017/10/12/@/resource_3.png" alt="resource_3"><br>                    <img src="/2017/10/12/@/resource_4.png" alt="resource_4"> </p>
+<p>还有一个问题就是在点击带有文字的盒子的时候可编辑的盒子显示，但是却没有获取焦点，看了网上很多资料，都有重新设置焦点的方法，但是只使用$(“#inputor”).focus();就解决了，后续有问题再继续深入。。。。</p>
 
       
 
