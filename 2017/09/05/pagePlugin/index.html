@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://suli.linsu.site">
-  <title>Tag: 模板引擎 | suli</title>
+  <title>jquery插件 | suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我就是我，不一样的烟火">
-<meta property="og:type" content="website">
-<meta property="og:title" content="suli">
-<meta property="og:url" content="http://suli.linsu.site/tags/模板引擎/index.html">
+  <meta name="description" content="写插件首先需要了解jquery插件的一些基本信息">
+<meta name="keywords" content="jquery插件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jquery插件">
+<meta property="og:url" content="http://suli.linsu.site/2017/09/05/pagePlugin/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="我就是我，不一样的烟火">
+<meta property="og:description" content="写插件首先需要了解jquery插件的一些基本信息">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-26T06:33:04.820Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="suli">
-<meta name="twitter:description" content="我就是我，不一样的烟火">
+<meta name="twitter:title" content="jquery插件">
+<meta name="twitter:description" content="写插件首先需要了解jquery插件的一些基本信息">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -153,48 +155,59 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-pagePlugin" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/31/handelbar/" class="archive-article-date">
-  	<time datetime="2017-08-31T05:51:19.312Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/31/handelbar/">js模版引擎handlebars.js实用教程</a>
+    <h1 class="article-title" itemprop="name">
+      jquery插件
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/09/05/pagePlugin/" class="archive-article-date">
+  	<time datetime="2017-09-05T06:26:51.132Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写插件首先需要了解jquery插件的一些基本信息<br><a id="more"></a><br>首先必须明白下面这句话的原理是什么<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$( <span class="string">"a"</span> ).css( <span class="string">"color"</span>, <span class="string">"red"</span> );</div></pre></td></tr></table></figure></p>
+<p>当我们使用 $ 去选择 一个元素的时候, 他返回的是 一个jquery对象，这个jquery有很多方法(css(),click()等等)，这些方法都是从$.fn扩展过来的，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.fn.greenify = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    this.css( <span class="string">"color"</span>, <span class="string">"green"</span> );</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>其实就是类似于原生js的原型对象，这就是一个简单的插件形式，接下来了解插件的主要方法</p>
+<h3 id="jquery插件一般用到jQuery-extend-和jQuery-fn-extend-两个方法"><a href="#jquery插件一般用到jQuery-extend-和jQuery-fn-extend-两个方法" class="headerlink" title="jquery插件一般用到jQuery.extend()和jQuery.fn.extend()两个方法"></a>jquery插件一般用到jQuery.extend()和jQuery.fn.extend()两个方法</h3><p>具体两个方法看另一篇文章<a href="/2017/09/11/extend/">jQuery.extend()和jQuery.fn.extend()</a></p>
+<h3 id="接下来主要介绍写插件的基本步骤"><a href="#接下来主要介绍写插件的基本步骤" class="headerlink" title="接下来主要介绍写插件的基本步骤"></a>接下来主要介绍写插件的基本步骤</h3><p>一、定一个闭包区域，防止插件”污染”<br>//闭包限定命名空间<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">function</span> ($) &#123;</div><div class="line">    </div><div class="line">&#125;)(window.jQuery);</div></pre></td></tr></table></figure></p>
+<p>二、jQuery.fn.extend(object)扩展jquery 方法，制作插件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//闭包限定命名空间</div><div class="line">(<span class="keyword">function</span> ($) &#123;</div><div class="line">    $.fn.extend(&#123;</div><div class="line">        <span class="string">"page"</span>:<span class="keyword">function</span>(options)&#123;</div><div class="line">            //<span class="keyword">do</span> something</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    //或者</div><div class="line">    $.fn.page = <span class="keyword">function</span>(options)&#123;</div><div class="line">	//<span class="keyword">do</span> something</div><div class="line">    &#125;</div><div class="line">&#125;)(window.jQuery);</div></pre></td></tr></table></figure></p>
+<p>三、给插件默认参数，实现 插件的功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">//闭包限定命名空间</div><div class="line"> (<span class="keyword">function</span> ($) &#123;</div><div class="line">     $.fn.extend(&#123;</div><div class="line">         <span class="string">"page"</span>: <span class="keyword">function</span> (options) &#123;</div><div class="line">             var opts = $.extend(&#123;&#125;, defaluts, options); //使用jQuery.extend 覆盖插件默认参数</div><div class="line">              <span class="built_in">return</span> this.each(<span class="function"><span class="title">function</span></span> () &#123;  //这里的this 就是 jQuery对象。这里<span class="built_in">return</span> 为了支持链式调用</div><div class="line">                  //遍历所有的调用page的dom,有可能是一个集合。</div><div class="line">                 var <span class="variable">$this</span> = $(this); //获取当前dom 的 jQuery对象，这里的this是当前循环的dom</div><div class="line">                 //<span class="keyword">do</span> something</div><div class="line">           &#125;);</div><div class="line"> </div><div class="line">         &#125;</div><div class="line">     &#125;);</div><div class="line">     //默认参数</div><div class="line">    var defaluts = &#123;</div><div class="line">         page: 1,</div><div class="line">         total: 100</div><div class="line">     &#125;;</div><div class="line"> &#125;)(window.jQuery);</div><div class="line"></div><div class="line"> //或者</div><div class="line">;(<span class="keyword">function</span>($,window)&#123;</div><div class="line">          $.fn.page = <span class="keyword">function</span>(options)&#123;</div><div class="line">                  <span class="built_in">return</span> this.each(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">                                alert(<span class="string">"0"</span>)</div><div class="line">                  &#125;)</div><div class="line">          &#125;</div><div class="line">  </div><div class="line">&#125;)(jQuery, window);</div></pre></td></tr></table></figure></p>
+<p>四、调用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">    $(<span class="string">"p"</span>).page().css(&#123;marginTop:<span class="string">'100px'</span>&#125;); ; //调用自定义插件 还可以支持链式调用</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>一句话描述;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">return</span> this.each()，相当于 this.each();<span class="built_in">return</span> this;</div></pre></td></tr></table></figure></p>
+<p>return 返回this对象，支持链式调用<br>五、暴露公共方法 给别人来扩展你的插件（如果有需求的话）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//公共的格式化 方法.，用户可以通过覆盖该方法达到不同的格式化效果。</div><div class="line">   $.fn.page.format = <span class="keyword">function</span> (str) &#123;</div><div class="line">       <span class="built_in">return</span>  str; </div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>六、整体代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">//闭包限定命名空间</div><div class="line">(<span class="keyword">function</span> ($) &#123;</div><div class="line">    $.fn.extend(&#123;</div><div class="line">        <span class="string">"page"</span>: <span class="keyword">function</span> (options) &#123;</div><div class="line">            <span class="keyword">if</span>(!private(options)) <span class="built_in">return</span> this;</div><div class="line">            var opts = $.extend(&#123;&#125;, defaluts, options); </div><div class="line">            <span class="built_in">return</span> this.each(<span class="function"><span class="title">function</span></span> () &#123; </div><div class="line">                var <span class="variable">$this</span> = $(this); </div><div class="line">                 $.fn.page.format(<span class="string">"调用公共方法"</span>)//调用公共方法</div><div class="line">                  //<span class="keyword">do</span> something</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    //默认参数</div><div class="line">    var defaluts = &#123;</div><div class="line">         page: 1,</div><div class="line">         total: 100</div><div class="line">     &#125;;</div><div class="line">    //公共的方法，用户可以通过覆盖该方法达到不同的格式化效果。</div><div class="line">    $.fn.page.format = <span class="keyword">function</span> (str) &#123;</div><div class="line">        <span class="built_in">return</span>  str; </div><div class="line">    &#125;</div><div class="line">    //私有方法，检测参数是否合法</div><div class="line">    <span class="keyword">function</span> private(options) &#123;</div><div class="line">        <span class="built_in">return</span> !options || (options &amp;&amp; typeof options === <span class="string">"object"</span>) ? <span class="literal">true</span> : <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;)(window.jQuery);</div><div class="line"></div><div class="line">//或者</div><div class="line">$.fn.page = <span class="keyword">function</span>(options)&#123;</div><div class="line">	var <span class="variable">$owner</span> = this,</div><div class="line">	//参数扩展</div><div class="line">	 settings = $.extend(&#123;&#125;,options || &#123;&#125;);</div><div class="line">	 	//私有方法</div><div class="line">            	<span class="keyword">function</span> renderPage(<span class="variable">$page</span>, page)&#123;&#125;</div><div class="line">            	<span class="keyword">function</span> href(c)&#123;&#125;</div><div class="line"></div><div class="line">       		<span class="built_in">return</span> this.each(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">            		var <span class="variable">$page</span>, lp, me = $(this),</div><div class="line">                		<span class="variable">$owner</span>.trigger(<span class="string">'page'</span>, page);</div><div class="line">           		&#125;);</div><div class="line">        		&#125;);</div><div class="line">&#125;</div><div class="line"> //公共的方法，用户可以通过覆盖该方法达到不同的格式化效果。</div><div class="line">    $.fn.page.format = <span class="keyword">function</span> (str) &#123;</div><div class="line">        <span class="built_in">return</span>  str; </div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>调用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//调用者覆盖 插件暴露的共公方法</div><div class="line">      $.fn.highLight.format = <span class="keyword">function</span> (txt) &#123;</div><div class="line">          <span class="built_in">return</span> txt.toLowerCase();</div><div class="line">      &#125;</div><div class="line">      $(<span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">          $(<span class="string">"p"</span>).page( &#123;page: 1,total: 100 &#125;); //调用自定义插件</div><div class="line">      &#125;);</div></pre></td></tr></table></figure></p>
+<p><a href="http://www.cnblogs.com/joey0210/p/3408349.html" target="_blank" rel="external">参考文章</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模板引擎</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jquery插件</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -207,18 +220,64 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/09/11/extend/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          jQuery.extend()和jQuery.fn.extend()
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/08/31/handelbar/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">js模版引擎handlebars.js实用教程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
+  
+
+  
+
+
+阅读数:
     
-
 
           </div>
         </div>
@@ -278,9 +337,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

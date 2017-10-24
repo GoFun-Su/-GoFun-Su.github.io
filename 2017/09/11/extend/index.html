@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://suli.linsu.site">
-  <title>Tag: 模板引擎 | suli</title>
+  <title>jQuery.extend()和jQuery.fn.extend() | suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我就是我，不一样的烟火">
-<meta property="og:type" content="website">
-<meta property="og:title" content="suli">
-<meta property="og:url" content="http://suli.linsu.site/tags/模板引擎/index.html">
+  <meta name="description" content="jQuery.extend()和jQuery.fn.extend()">
+<meta name="keywords" content="jquery插件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery.extend()和jQuery.fn.extend()">
+<meta property="og:url" content="http://suli.linsu.site/2017/09/11/extend/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="我就是我，不一样的烟火">
+<meta property="og:description" content="jQuery.extend()和jQuery.fn.extend()">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-11T08:38:21.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="suli">
-<meta name="twitter:description" content="我就是我，不一样的烟火">
+<meta name="twitter:title" content="jQuery.extend()和jQuery.fn.extend()">
+<meta name="twitter:description" content="jQuery.extend()和jQuery.fn.extend()">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -153,48 +155,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-extend" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/31/handelbar/" class="archive-article-date">
-  	<time datetime="2017-08-31T05:51:19.312Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/31/handelbar/">js模版引擎handlebars.js实用教程</a>
+    <h1 class="article-title" itemprop="name">
+      jQuery.extend()和jQuery.fn.extend()
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/09/11/extend/" class="archive-article-date">
+  	<time datetime="2017-09-11T08:32:45.562Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> jQuery.extend()和jQuery.fn.extend()<br><a id="more"></a></p>
+<h2 id="jquery插件一般用到jQuery-extend-和jQuery-fn-extend-两个方法"><a href="#jquery插件一般用到jQuery-extend-和jQuery-fn-extend-两个方法" class="headerlink" title="jquery插件一般用到jQuery.extend()和jQuery.fn.extend()两个方法"></a>jquery插件一般用到jQuery.extend()和jQuery.fn.extend()两个方法</h2><p>首先介绍jQuery.extend()方法<br>一、合并多个对象<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">extend(dest,src1,src2,src3...);</div></pre></td></tr></table></figure></p>
+<p>将src1,src2,src3…合并到dest中,返回值为合并后的dest,由此可以看出该方法合并后，是修改了dest的结构的。如果想要得到合并的结果却又不想修改dest的结构<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var newSrc=$.extend(&#123;&#125;,src1,src2,src3...)//也就是将<span class="string">"&#123;&#125;"</span>作为dest参数。</div></pre></td></tr></table></figure></p>
+<p>二、深度嵌套对象<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">extend(boolean,dest,src1,src2,src3...)</div></pre></td></tr></table></figure></p>
+<p>第一个参数boolean代表是否进行深度拷贝，true代表深拷贝，使用如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> jQuery.extend( </div><div class="line">&#123; name: “John”, location: &#123; city: “Boston” &#125; &#125;, </div><div class="line">&#123; last: “Resig”, location: &#123; state: “MA” &#125; &#125; </div><div class="line">); </div><div class="line">// 结果: </div><div class="line">// =&gt; &#123; name: “John”, last: “Resig”, location: &#123; state: “MA” &#125; &#125; </div><div class="line">// 新的更深入的 .extend() </div><div class="line">jQuery.extend( <span class="literal">true</span>, </div><div class="line">&#123; name: “John”, location: &#123; city: “Boston” &#125; &#125;, </div><div class="line">&#123; last: “Resig”, location: &#123; state: “MA” &#125; &#125; </div><div class="line">); </div><div class="line">// 结果 </div><div class="line">// =&gt; &#123; name: “John”, last: “Resig”, </div><div class="line">// location: &#123; city: “Boston”, state: “MA” &#125; &#125;</div></pre></td></tr></table></figure></p>
+<p>三、静态方法<br>$.extend(src) 该方法就是将src合并到jquery的全局对象中去，如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$.extend(&#123; hello:<span class="function"><span class="title">function</span></span>()&#123;alert(<span class="string">'hello'</span>);&#125; &#125;);</div><div class="line">$.hello();//调用</div><div class="line">``` 　</div><div class="line">接下来介绍jQuery.fn.extend()</div><div class="line">```bash</div><div class="line">jQuery.fn = jQuery.prototype = &#123;</div><div class="line">　　　init: <span class="keyword">function</span>( selector, context ) &#123;.....&#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>原来 jQuery.fn = jQuery.prototype(类似原生js的原型方法，是所有实列共享的)，比如$(“#btn1″) 会生成一个 jQuery类的实例<br>jQuery.fn.extend = jQuery.prototype.extend<br>你可以拓展一个对象到jQuery的 prototype里去，这样的话就是插件机制了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">function</span>( $ )&#123;</div><div class="line">$.fn.tooltip = <span class="keyword">function</span>( options ) &#123;</div><div class="line">	</div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line">//等价于</div><div class="line">var tooltip = &#123;</div><div class="line"><span class="keyword">function</span>(options)&#123;</div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line">$.fn.extend(tooltip) = $.prototype.extend(tooltip) = $.fn.tooltip</div><div class="line">&#125;)( jQuery );</div><div class="line">调用的时候$(<span class="string">"#input1"</span>).tooltip();</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模板引擎</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jquery插件</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -207,18 +214,64 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/09/22/input/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          jQuery实现美化input框
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/09/05/pagePlugin/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jquery插件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
+  
+
+  
+
+
+阅读数:
     
-
 
           </div>
         </div>
@@ -278,9 +331,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://suli.linsu.site">
-  <title>Tag: 模板引擎 | suli</title>
+  <title>设计模式--单例模式 | suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我就是我，不一样的烟火">
-<meta property="og:type" content="website">
-<meta property="og:title" content="suli">
-<meta property="og:url" content="http://suli.linsu.site/tags/模板引擎/index.html">
+  <meta name="description" content="单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式--单例模式">
+<meta property="og:url" content="http://suli.linsu.site/2017/08/21/single/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="我就是我，不一样的烟火">
+<meta property="og:description" content="单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-28T06:36:29.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="suli">
-<meta name="twitter:description" content="我就是我，不一样的烟火">
+<meta name="twitter:title" content="设计模式--单例模式">
+<meta name="twitter:description" content="单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -153,48 +155,57 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-single" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/31/handelbar/" class="archive-article-date">
-  	<time datetime="2017-08-31T05:51:19.312Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/31/handelbar/">js模版引擎handlebars.js实用教程</a>
+    <h1 class="article-title" itemprop="name">
+      设计模式--单例模式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/21/single/" class="archive-article-date">
+  	<time datetime="2017-08-21T09:51:28.590Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单例模式：保证一个类仅有一个实例(所有的实例都是相等的),并提供一个访问它的全局访问点<br><a id="more"></a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>实现单例模式的方法一般是先判断实例存在与否，如果存在直接返回，如果不存在就创建了再返回,在平时的代码中很常用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var obj;</div><div class="line"><span class="keyword">if</span> ( !obj )&#123;</div><div class="line">obj = xxx;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在js中其实最简单的单例模式就是把全局变量当成单例来写<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = &#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p>当用这种方式创建对象 a 时，对象 a 确实是独一无二的。如果 a 变量被声明在全局作用域下，则我们可以在代码中的任何位置使用这个变量，全局变量提供给全局访问是理所当然的,这样就满足了单例模式的两个条件,但是全局变量存在很多问题，它很容易造成命名空间污染,所以一般是会用两种方法避免污染</p>
+<ol>
+<li>使用命名空间</li>
+<li>使用闭包封装私有变量<br>这种方法把一些变量封装在闭包的内部，只暴露一些接口跟外界通信：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var user = (<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">     var __name = <span class="string">'sven'</span>,</div><div class="line">           __age = 29;</div><div class="line">     <span class="built_in">return</span> &#123;</div><div class="line">           getUserInfo: <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">                <span class="built_in">return</span> __name + <span class="string">'-'</span> + __age;</div><div class="line">           &#125;</div><div class="line">      &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="单例模式实现的基本算法"><a href="#单例模式实现的基本算法" class="headerlink" title="单例模式实现的基本算法"></a>单例模式实现的基本算法</h3><p>当一个对象需要和另外的对象进行跨系统协作的时候，以下算法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">var SingletonSimple = (<span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">    <span class="keyword">function</span> Singleton(options) &#123;</div><div class="line">        var options = options || &#123;&#125;;</div><div class="line">        this.name = <span class="string">'Singleton'</span>;</div><div class="line">        this.pointX = options.pointX || 0; </div><div class="line">        this.pointY = options.pointY || 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //实例容器</div><div class="line">    var instance;</div><div class="line">    var _static = &#123;</div><div class="line">        name: <span class="string">'SingletonSimple'</span>,</div><div class="line">        //获取实例的方法</div><div class="line">        //返回Singleton的实例</div><div class="line">        getInstance: <span class="keyword">function</span> (options) &#123;</div><div class="line">            <span class="keyword">if</span> (instance === undefined) &#123;</div><div class="line">                instance = new Singleton(options);</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">return</span> instance;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="built_in">return</span> _static;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">SingletonSimple.getInstance(&#123; pointX: 5 &#125;);</div><div class="line"></div><div class="line">//或者 普通的使用方法结合模块化模式</div><div class="line">var mySingleton = (<span class="function"><span class="title">function</span></span> () &#123;</div><div class="line"></div><div class="line">  // Instance stores a reference to the Singleton</div><div class="line">  var instance;</div><div class="line"></div><div class="line">  <span class="keyword">function</span> <span class="function"><span class="title">init</span></span>() &#123;</div><div class="line">    // 单例</div><div class="line">    // 私有方法和变量</div><div class="line">    <span class="keyword">function</span> <span class="function"><span class="title">privateMethod</span></span>()&#123;</div><div class="line">        console.log( <span class="string">"I am private"</span> );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    var privateVariable = <span class="string">"Im also private"</span>;</div><div class="line">    var privateRandomNumber = Math.random();</div><div class="line">    <span class="built_in">return</span> &#123;</div><div class="line">      // 共有方法和变量</div><div class="line">      publicMethod: <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">        console.log( <span class="string">"The public can see me!"</span> );</div><div class="line">      &#125;,</div><div class="line">      publicProperty: <span class="string">"I am also public"</span>,</div><div class="line">      getRandomNumber: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">        <span class="built_in">return</span> privateRandomNumber;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="built_in">return</span> &#123;</div><div class="line">    // 如果存在获取此单例实例，如果不存在创建一个单例实例</div><div class="line">    getInstance: <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">      <span class="keyword">if</span> ( !instance ) &#123;</div><div class="line">        instance = init();</div><div class="line">      &#125;</div><div class="line">      <span class="built_in">return</span> instance;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>单例模式使用的场景：<br>比如设置页面弹窗的时候，我只需要刚开始创建一次弹窗，下次的时候如果存在，直接调用，不用创建多次,但是实现之后觉得是不对的，不同的操作可以操作不同的弹窗，不过现在就只学习了单例模式还有观察者模式，学习完设计模式之后再修改<br><a href="https://github.com/GoFun-Su/s-toaster/tree/master" target="_blank" rel="external">弹窗插件</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">模板引擎</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -207,18 +218,64 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/08/23/constructor/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          设计模式--构造函数模式
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/08/18/index/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">设计模式--观察者模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
+  
+
+  
+
+
+阅读数:
     
-
 
           </div>
         </div>
@@ -278,9 +335,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
