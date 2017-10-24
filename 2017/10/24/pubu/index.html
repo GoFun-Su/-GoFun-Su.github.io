@@ -16,10 +16,13 @@
 <meta property="og:site_name" content="suli">
 <meta property="og:description" content="使用js实现瀑布流效果">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-24T05:55:03.665Z">
+<meta property="og:image" content="http://suli.linsu.site/2017/10/24/pubu/col.png">
+<meta property="og:image" content="http://suli.linsu.site/2017/10/24/pubu/j.png">
+<meta property="og:updated_time" content="2017-10-24T06:44:32.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瀑布流效果">
 <meta name="twitter:description" content="使用js实现瀑布流效果">
+<meta name="twitter:image" content="http://suli.linsu.site/2017/10/24/pubu/col.png">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -36,6 +39,16 @@
   
 
   
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?33dcf9d8dc2c118a776530b75520b4cd";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 
 </head>
 
@@ -176,6 +189,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>使用js实现瀑布流效果<br><a id="more"></a><br>要求: 动态获取列表数据，滚动大于一屏加载数据，并且数据展示呈现瀑布流效果<br>首先我使用的是Handlebars.js进行数据渲染，滚动大于一屏的时候获取请求进行加载数据<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//整个页面距离顶部的卷曲出去的距离</div><div class="line">var scrollTop = $(document).scrollTop();</div><div class="line">// 浏览器的高度</div><div class="line">var winHeight = $(window).height();</div><div class="line">//文档的高度</div><div class="line">var docHeight = $(document).height();</div><div class="line">//满足此条件滚动加载数据</div><div class="line"> scrollTop+winHeight&gt;=docHeight</div></pre></td></tr></table></figure></p>
+<p>所以接下来最主要的就是页面展示瀑布流效果。刚开始使用了插件，但是滚动加载数据的时候页面就会乱，所以最后还是参考别人的写法自己重新研究一番。<br>实现瀑布流最主要的就是布局方式，使用css实现 瀑布流布局主要用到columns属性，具体可自行百度，实现效果如图：<br><img src="/2017/10/24/pubu/col.png" alt="col"><br>这种方法是按列排列的，但是实现的效果和下图的不一样，所以主要还是使用js实现瀑布流，对于css没有进行过多的研究。<br> <img src="/2017/10/24/pubu/j.png" alt="j"><br> 使用js实现瀑布流效果主要是根据宽度一样、列数固定、每次查找每列高度最短的，然后后面填充数据。<br> 主要实现方式代码,查看<a href="https://github.com/GoFun-Su/s-wookMarkLoad" target="_blank" rel="external">github</a><br> 。。。。。。<br> 自己在操作的过程中没遇到过滚动加载请求多次的问题，但是网上也谈到一点，针对一些会频繁触发的事件如scroll、resize，如果正常绑定事件处理函数的话，有可能在很短的时间内多次连续触发事件，十分影响性能。所以就需要防抖动或者节流处理。</p>
 
       
 
@@ -345,10 +359,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
@@ -361,15 +371,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jquery css</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
             
             <div class="clearfix"></div>
