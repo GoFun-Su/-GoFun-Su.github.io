@@ -300,8 +300,8 @@
   <!--page counter part-->
 <script>
 function addCount (Counter) {
-        url=$('.article-date').attr('href').trim();
-        title = $('.article-title').text().trim();
+        url=$('.archive-article-date').attr('href').trim();
+        title = $('.archive-article-date').text().trim();
         var query=new AV.Query(Counter);
         //use url as unique idnetfication
         query.equalTo("url",url);
@@ -339,7 +339,7 @@ function addCount (Counter) {
 $(function(){
         var Counter=AV.Object.extend("Counter");
         //only increse visit counting when intering a page
-        if ($('.article-title').length == 1)
+        if ($('.archive-article-date').length == 1)
            addCount(Counter);
         var query=new AV.Query(Counter);
         query.descending("time");
