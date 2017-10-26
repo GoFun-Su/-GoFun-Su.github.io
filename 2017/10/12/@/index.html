@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://suli.linsu.site/2017/10/12/@/resource_4.png">
 <meta property="og:image" content="http://suli.linsu.site/2017/10/12/@/copy.png">
 <meta property="og:image" content="http://suli.linsu.site/2017/10/12/@/text.png">
-<meta property="og:updated_time" content="2017-10-26T06:37:42.297Z">
+<meta property="og:updated_time" content="2017-10-26T07:43:25.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类似qq艾特好友功能">
 <meta name="twitter:description" content="最近做项目，碰到过类似qq艾特好友的功能 ，拿出来共享">
@@ -194,7 +194,7 @@
 <p>还有一个问题就是在点击带有文字的盒子的时候可编辑的盒子显示，但是却没有获取焦点，看了网上很多资料，都有重新设置焦点的方法，但是只使用$(“#inputor”).focus();就解决了，后续有问题再继续深入。。。。</p>
 <h3 id="拷贝内容复制到文本域，会将样式全部拷贝进来"><a href="#拷贝内容复制到文本域，会将样式全部拷贝进来" class="headerlink" title="拷贝内容复制到文本域，会将样式全部拷贝进来"></a>拷贝内容复制到文本域，会将样式全部拷贝进来</h3><p>如图所示：<img src="/2017/10/12/@/copy.png" alt="copy"><br>但是我希望的是不要带有样式，仅仅拷贝的是内容而已<br>具体解决可以参考(<a href="http://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/)中的控制粘贴paste事件的JS控制法" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2016/01/contenteditable-plaintext-only/)中的控制粘贴paste事件的JS控制法</a><br>主要用到的关键点document.body.createTextRange();  document.execCommand(“insertText”, false, text);onPaste事件等等。</p>
 <h3 id="可编辑状态的盒子内容不是纯文本"><a href="#可编辑状态的盒子内容不是纯文本" class="headerlink" title="可编辑状态的盒子内容不是纯文本"></a>可编辑状态的盒子内容不是纯文本</h3><p>如图所示：<img src="/2017/10/12/@/text.png" alt="text"><br>使用js 正则也许可以解决，但是暂时没找到好的方法，我使用的是最简单的jq的方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var <span class="variable">$parent</span> = $(<span class="string">"#inputor"</span>),</div><div class="line"><span class="variable">$editor</span> = $(<span class="string">".editor"</span>);</div><div class="line">//创建 一个盒子主要是用来赋值内容的，可以不用，但是为了避免后面的remove影响自身的内容效果，所以选择复制一份进行操作</div><div class="line"><span class="variable">$editor</span>.html(<span class="variable">$parent</span>.html());</div><div class="line">var <span class="variable">$div</span> = <span class="variable">$editor</span>.find(<span class="string">"div"</span>),</div><div class="line">editorHtml = <span class="string">""</span>;</div><div class="line"><span class="variable">$div</span>.each(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">	var text = $(this).html();</div><div class="line">	editorHtml+=(text == <span class="string">"&lt;br&gt;"</span>)?<span class="string">"\n"</span>:(<span class="string">"\n"</span>+text);</div><div class="line"> &#125;)</div><div class="line"><span class="variable">$div</span>.remove();</div><div class="line">editorHtml = <span class="variable">$editor</span>.html()+editorHtml;</div></pre></td></tr></table></figure></p>
-<p>因为没换行一次就会产生一个div，所以把所有的div过滤出来，仅仅获取里面的内容，对于div里面是换行<br>的，由”\n”替换,最后进行字符串的拼接。</p>
+<p>因为每换行一次就会产生一个div，所以把所有的div过滤出来，仅仅获取里面的内容，对于div里面是换行<br>的，由”\n”替换,最后进行字符串的拼接。</p>
 
       
 
