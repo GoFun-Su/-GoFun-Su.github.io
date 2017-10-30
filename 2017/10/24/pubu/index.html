@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://suli.linsu.site/2017/10/24/pubu/col.png">
 <meta property="og:image" content="http://suli.linsu.site/2017/10/24/pubu/j.png">
-<meta property="og:updated_time" content="2017-10-27T03:41:13.641Z">
+<meta property="og:updated_time" content="2017-10-27T08:27:53.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瀑布流效果">
 <meta name="twitter:description" content="使用js实现瀑布流效果">
@@ -179,9 +179,6 @@ var _hmt = _hmt || [];
     </h1>
   
 
-        <span id="busuanzi_container_page_pv" style="float: right; color: #999;">
-        阅读<span id="busuanzi_value_page_pv"></span>
-      </span>
         
         <a href="/2017/10/24/pubu/" class="archive-article-date">
   	<time datetime="2017-10-24T02:50:34.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-24</time>
@@ -197,7 +194,7 @@ var _hmt = _hmt || [];
 <p>这样在1000ms以内事件只会触发一次。<br>在getUserAction输出this。指向的是window，如果要想指向”div id=”container””，修改代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> debounce(func, <span class="built_in">wait</span>) &#123;</div><div class="line">    var timeout;</div><div class="line"></div><div class="line">    <span class="built_in">return</span> <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">        var context = this;</div><div class="line"></div><div class="line">        clearTimeout(timeout)</div><div class="line">        timeout = setTimeout(<span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">            func.apply(context)</div><div class="line">        &#125;, <span class="built_in">wait</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>刚开始对这段代码也有点迷惑，自己试着练习一下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">b = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    console.log(this);</div><div class="line">&#125;</div><div class="line">b();//输出window</div><div class="line"></div><div class="line">var a = new Object();</div><div class="line">a.b = <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">      console.log(this)</div><div class="line">&#125;</div><div class="line">a.b()//输出结果 Object &#123;b: <span class="keyword">function</span>&#125;</div></pre></td></tr></table></figure></p>
 <p>b = function(){} b是函数名，也是函数的一个引用。</p>
-<p>参考文章<br><a href="https://www.talkingcoder.com/article/6427434037544091919" target="_blank" rel="external">防抖动</a></p>
+<p>参考文章<br><a href="https://www.talkingcoder.com/article/6427434037544091919" target="_blank" rel="external">防抖动</a><br><a href="https://segmentfault.com/a/1190000002764479" target="_blank" rel="external">https://segmentfault.com/a/1190000002764479</a><br><a href="https://segmentfault.com/a/1190000005926579" target="_blank" rel="external">https://segmentfault.com/a/1190000005926579</a><br><a href="http://www.jb51.net/article/105601.htm" target="_blank" rel="external">http://www.jb51.net/article/105601.htm</a><br><a href="http://www.bootcss.com/p/underscore/" target="_blank" rel="external">http://www.bootcss.com/p/underscore/</a></p>
 
       
 
@@ -240,6 +237,15 @@ var _hmt = _hmt || [];
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/10/27/inputRadio/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/2017/10/12/@/" id="article-nav-older" class="article-nav-link-wrap">
@@ -287,6 +293,9 @@ var _hmt = _hmt || [];
     	<div class="footer-left">
     		&copy; 2017 suli
     	</div>
+      <span id="busuanzi_container_page_pv" style="float: right; color: #999;">
+        阅读<span id="busuanzi_value_page_pv"></span>
+      </span>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
