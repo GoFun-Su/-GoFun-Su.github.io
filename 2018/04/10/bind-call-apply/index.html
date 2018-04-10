@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://suli.linsu.site">
-  <title>suli</title>
+  <title>js | suli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="var cat = {     name: &amp;apos;Kitty&amp;apos;,     sayName: function() {         console.log(this.name);     } }; var sayName = cat.sayName.apply(cat); var sayName = cat.sayName.call(cat); var sayName = cat">
+  <meta name="description" content="bind call apply">
+<meta name="keywords" content="js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="suli">
+<meta property="og:title" content="js">
 <meta property="og:url" content="http://suli.linsu.site/2018/04/10/bind-call-apply/index.html">
 <meta property="og:site_name" content="suli">
-<meta property="og:description" content="var cat = {     name: &amp;apos;Kitty&amp;apos;,     sayName: function() {         console.log(this.name);     } }; var sayName = cat.sayName.apply(cat); var sayName = cat.sayName.call(cat); var sayName = cat">
+<meta property="og:description" content="bind call apply">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-15T06:26:30.434Z">
+<meta property="og:updated_time" content="2018-04-10T10:04:14.753Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="suli">
-<meta name="twitter:description" content="var cat = {     name: &amp;apos;Kitty&amp;apos;,     sayName: function() {         console.log(this.name);     } }; var sayName = cat.sayName.apply(cat); var sayName = cat.sayName.call(cat); var sayName = cat">
+<meta name="twitter:title" content="js">
+<meta name="twitter:description" content="bind call apply">
   
     <link rel="alternative" href="/atom.xml" title="suli" type="application/atom+xml">
   
@@ -167,11 +168,30 @@ var _hmt = _hmt || [];
             <article id="post-bind-call-apply" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header" style="padding-right:20px;">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js
+    </h1>
+  
+
+        <span id="busuanzi_container_page_pv" style="float: right; color: #999;">
+        阅读<span id="busuanzi_value_page_pv"></span>
+      </span>
+        
+        <a href="/2018/04/10/bind-call-apply/" class="archive-article-date">
+  	<time datetime="2018-04-10T05:26:42.232Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>var cat = {
-    name: &apos;Kitty&apos;,
-    sayName: function() {
+        <p>bind call apply<br><a id="more"></a></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><h6 id="bind-call-apply"><a href="#bind-call-apply" class="headerlink" title="bind call apply"></a>bind call apply</h6><pre><code class="bash">var cat = {
+    name: <span class="string">'Kitty'</span>,
+    sayName: <span class="function"><span class="title">function</span></span>() {
         console.log(this.name);
     }
 };
@@ -179,6 +199,7 @@ var sayName = cat.sayName.apply(cat);
 var sayName = cat.sayName.call(cat);
 var sayName = cat.sayName.bind(cat)();
 </code></pre>
+
       
 
       
@@ -186,7 +207,29 @@ var sayName = cat.sayName.bind(cat)();
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -388,11 +431,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
