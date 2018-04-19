@@ -17,7 +17,7 @@
 <meta property="og:description" content="继承">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://suli.linsu.site/2018/04/19/inherit/原型链继承.png">
-<meta property="og:updated_time" content="2018-04-19T08:55:29.673Z">
+<meta property="og:updated_time" content="2018-04-19T10:15:17.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js--继承">
 <meta name="twitter:description" content="继承">
@@ -197,8 +197,8 @@ var _hmt = _hmt || [];
 <p>constructor始终指向创建自身的构造函数 —&gt;Person.prototype.constructor === Object</p>
 <p>一、原型链继承—&gt;通过实例属性的<strong>proto</strong>继承<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Teacher</span></span>()&#123;&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Student</span></span>()&#123;&#125;</span><br><span class="line">Student.prototype = new Teacher();</span><br><span class="line">var stu = new Student();</span><br></pre></td></tr></table></figure></p>
 <p>如图所示 <img src="/2018/04/19/inherit/原型链继承.png" alt="png_1"> </p>
-<p>使用原型链继承的缺点,首先先了解一下原型对象<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Teacher</span></span>()&#123;&#125;</span><br><span class="line">Teacher.prototype.color= [<span class="string">"red"</span>,<span class="string">"blue"</span>];</span><br><span class="line">Teacher.prototype.getcolor= <span class="function"><span class="title">function</span></span>()&#123;<span class="built_in">return</span> this.color&#125;</span><br><span class="line">var teacher1 = new Teacher();</span><br><span class="line">teacher1.color.push(<span class="string">"green"</span>);</span><br><span class="line">var teacher2 = new Teacher();</span><br><span class="line">console.log(teacher2.getcolor()) ---&gt;[<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>]</span><br><span class="line">console.log(teacher2.getcolor() === teacher1.getcolor()) ---&gt;<span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
-<p>因为原型对象中所有属性和函数是共享的，换句话说，teacher1和teacher2访问的是同一组属性和同一个函数</p>
+<p>原型链继承的缺点:来自原型对象的引用属性是所有实例共享的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Teacher</span></span>()&#123;</span><br><span class="line">	this.color =[<span class="string">"red"</span>,<span class="string">"blue"</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Student</span></span>()&#123;&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype = new Teacher();</span><br><span class="line">var p1 = new Student();</span><br><span class="line">p1.color.push(<span class="string">"green"</span>);</span><br><span class="line">var p2 = new Student();</span><br><span class="line">console.log(p2.color)</span><br></pre></td></tr></table></figure></p>
+<p>Student.prototype是Teacher的一个实例，所以Student.prototype拥有了Teacher的属性color,相当于创建了Student.prototype.color存在一样，所以对所有实例是共享的</p>
 
       
 
@@ -439,11 +439,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jquery插件</a>
+                <a href="javascript:void(0)" class="js-tag color5">模板引擎</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">模板引擎</a>
+                <a href="javascript:void(0)" class="js-tag color4">jquery插件</a>
               </li>
              
               <li class="article-tag-list-item">
